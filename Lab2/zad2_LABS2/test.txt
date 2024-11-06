@@ -1,6 +1,0 @@
-Nov 6 18:06 .
-Nov 6 16:11 ..
-Nov 6 18:02 .idea
-Nov 6 18:03 test.txt
-Nov 6 17:02 .venv
-Nov 6 18:06 zad2_LABS2.py
