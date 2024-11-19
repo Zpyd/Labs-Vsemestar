@@ -1,15 +1,19 @@
-import java.util.Scanner;
 
-public class Group1_Lab3_Exercise_3_Commented {
+import java.util.*;
+
+public class zad3_LABS3{
+
+    public static int num=0;
+    public static int num_of_dashes;
     public static void main(String[] args) {
         Scanner user_input = new Scanner(System.in);
 
         System.out.print("Enter the number of dashes: ");
-        int num_of_dashes = user_input.nextInt();
+        num_of_dashes = user_input.nextInt();
 
 
         // Change this to change the number of intervals:
-        int num_of_intervals = 2;
+        int num_of_intervals = 5;
         for (int k = 1; k <= num_of_intervals; k++) {
             // Print start of new interval (This would be the the part of the interval)
             print_interval(num_of_dashes);
@@ -36,9 +40,10 @@ public class Group1_Lab3_Exercise_3_Commented {
      *
      */
     public static void print_fraction_of_interval(int n) {
-        if (n == 0)
+        if (n == 0) {
+            num++;
             return;
-
+        }
         // Print half of the fraction.
         print_fraction_of_interval(n-1);
 
@@ -53,6 +58,37 @@ public class Group1_Lab3_Exercise_3_Commented {
     public static void print_interval(int n) {
         for (int i = 0; i < n; i++)
             System.out.print("-");
-        System.out.println();
+        System.out.println("\t\t"+getFraction());
+    }
+    
+    public static String getFraction(){
+        int den=(1<<(num_of_dashes-1)); 
+        if (num%den==0){
+            int result=num/den;
+            
+            return Integer.toString(result);
+        }
+        else{
+            
+            
+            int gcd= GCD(num,den);
+//            System.out.println(gcd);
+            
+            int denTemp=den/gcd;
+            int numTemp=num/gcd;
+            numTemp%=denTemp;
+            
+            
+             return (numTemp + "/" + denTemp);
+        }
+       
+    }
+    
+    public static int GCD(int a,int b){
+        if(b==0){
+        return a;
+    }
+        return GCD(b,a%b);
+        
     }
 }
