@@ -15,16 +15,16 @@ mode_t REZIM = (S_IRWXU | S_IRWXG | S_IRWXO);
 int main(int argc, char *argv[])
 {
 
-    if(argc==2){
+    if(argc!=2){
         printf("Nemas tocen broj na argumenti");
         exit(1);
     }
 
-    char proces = argv[1];
+    int proces = atoi(argv[1]);
 
     switch (proces)
     {   //goddamnit cases se all in 1 scope pa se redeklarirat
-    case '1':{  
+    case 1:{  
         int fd = open(PIPE1, O_RDWR | O_CREAT, REZIM);
         if (fd == -1)
         {
@@ -39,7 +39,7 @@ int main(int argc, char *argv[])
 
 
         //??????? is dis ok????
-        while((bytesRead = read(0, buffer, BUFFER_SIZE))>0 && buffer[bytesRead-1]!='\0'){
+        while((bytesRead = read(0, buffer, BUFFER_SIZE))>0 && buffer[strlen(buffer)]!='\0'){
             
             if(write(fd,buffer,bytesRead)==-1){
                 printf("failed to zapise u fajlo");
@@ -60,7 +60,7 @@ int main(int argc, char *argv[])
 
         break;}
 
-    case '2':{
+    case 2:{
         int citanjefd = open(PIPE1, O_RDONLY);
         if (citanjefd == -1)
         {
@@ -86,7 +86,7 @@ int main(int argc, char *argv[])
         close(smestuvanjefd);
         break;
     }
-    case '3':{
+    case 3:{
         int fd = open(PIPE2, O_RDONLY, REZIM);
         if (fd == -1)
         {
