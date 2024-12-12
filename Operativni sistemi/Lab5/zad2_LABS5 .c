@@ -24,7 +24,7 @@ int main(int argc, char *argv[])
 
     switch (proces)
     {
-    case '1':
+    case '1':{
         int fd = open(PIPE1, O_RDWR | O_CREAT, REZIM);
         if (fd == -1)
         {
@@ -66,9 +66,9 @@ int main(int argc, char *argv[])
     
         close(fd);
 
-        break;
+        break;}
 
-    case '2':
+    case '2':{
         int citanjefd = open(PIPE1, O_RDONLY);
         if (citanjefd == -1)
         {
@@ -93,9 +93,9 @@ int main(int argc, char *argv[])
 
         close(citanjefd);
         close(smestuvanjefd);
-        break;
+        break;}
 
-    case '3':
+    case '3':{
         int fd = open(PIPE2, O_RDONLY, REZIM);
         if (fd == -1)
         {
@@ -118,7 +118,7 @@ int main(int argc, char *argv[])
         }
 
         printf("ima %d prazni mesta",praznoMesto);
-        break;
+        break; }  
     }
 
     return 0;
