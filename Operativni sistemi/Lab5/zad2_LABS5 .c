@@ -20,7 +20,7 @@ int main(int argc, char *argv[])
         exit(1);
     }
 
-    int proces = argv[1];
+    char proces = argv[1];
 
     switch (proces)
     {
