@@ -49,7 +49,7 @@ int main(int argc, char *argv[])
 
         //how do i copy just till then??????
         if(buffer[bytesRead-1]=="\0" && bytesRead>0){
-            buffer[bytesRead-1]=="";
+            buffer[bytesRead-1]="";
             if(write(fd,buffer,bytesRead)==-1){
                 printf("failed to write u fajlo poslednio msg");
                 exit(1);
