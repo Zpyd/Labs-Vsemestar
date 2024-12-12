@@ -20,11 +20,11 @@ int main(int argc, char *argv[])
         exit(1);
     }
 
-    int proces = atoi(argv[1]);
+    int proces = argv[1];
 
     switch (proces)
-    {
-    case '1':
+    {   //goddamnit cases se all in 1 scope pa se redeklarirat
+    case '1':{  
         int fd = open(PIPE1, O_RDWR | O_CREAT, REZIM);
         if (fd == -1)
         {
@@ -38,7 +38,7 @@ int main(int argc, char *argv[])
         ssize_t bytesRead;
 
 
-        //??????? how do i read ????
+        //??????? is dis ok????
         while((bytesRead = read(0, buffer, BUFFER_SIZE))>0 && buffer[bytesRead-1]!='\0'){
             
             if(write(fd,buffer,bytesRead)==-1){
@@ -48,24 +48,19 @@ int main(int argc, char *argv[])
         }
 
         //how do i copy just till then??????
-        if(buffer[bytesRead]=="0"){
+        if(buffer[bytesRead-1]=="\0" && bytesRead>0){
+            buffer[bytesRead-1]=="";
             if(write(fd,buffer,bytesRead)==-1){
                 printf("failed to write u fajlo poslednio msg");
                 exit(1);
             }
-        };
-
-    if (bytesRead > 0) {
-        buffer[bytesRead] = '\0'; 
-
-
-
-       
+        }
+    
         close(fd);
 
-        break;
+        break;}
 
-    case '2':
+    case '2':{
         int citanjefd = open(PIPE1, O_RDONLY);
         if (citanjefd == -1)
         {
@@ -90,8 +85,8 @@ int main(int argc, char *argv[])
         close(citanjefd);
         close(smestuvanjefd);
         break;
-
-    case '3':
+    }
+    case '3':{
         int fd = open(PIPE2, O_RDONLY, REZIM);
         if (fd == -1)
         {
@@ -114,8 +109,8 @@ int main(int argc, char *argv[])
         }
 
         printf("ima %d prazni mesta",praznoMesto);
-        break;
+        break;}
     }
 
     return 0;
-}}
+}
