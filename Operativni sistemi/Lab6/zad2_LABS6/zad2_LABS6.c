@@ -66,7 +66,8 @@ int main(int argc, char *argv[])
 
             char comm[100];
             printf("komanda:\n");
-
+            scanf("%s",comm);
+            
             execlp(comm,comm,flag,NULL);
            
              
