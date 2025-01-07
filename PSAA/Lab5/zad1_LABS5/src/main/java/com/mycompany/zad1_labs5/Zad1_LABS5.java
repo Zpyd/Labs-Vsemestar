@@ -77,7 +77,7 @@ class SLLHT<K extends Comparable<K>, E> {
     }
 
     private int hash(K key) {
-        return (key.toString().charAt(0) - 'a') % htable.length;
+        return Math.abs(key.hashCode())% htable.length; 
     }
 
     public SLLNode<Map<K, E>> find(K look) {
